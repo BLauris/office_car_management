@@ -1,0 +1,17 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th #
+      %th Make
+      %th Taken At
+      %th Taken Till
+  %tbody
+    - @reservations.each do |reservation|
+      %tr 
+        %td
+        %td
+          = reservation.car.make
+        %td
+          = reservation.taken_at
+        %td
+          = reservation.taken_till

@@ -5,10 +5,12 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: root_path}
+      %span.navbar-brand
         Office Car Management
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
+        %li
+          = link_to "Make New reservation", root_path 
         %li
           = link_to "My Reservations", reservations_users_path     
         %li
