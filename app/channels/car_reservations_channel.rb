@@ -13,8 +13,7 @@ class CarReservationsChannel < ApplicationCable::Channel
     car_reservation_service = CarReservationService.new(
       taken_at: Chronic.parse(data["taken_at"]),
       taken_till: Chronic.parse(data["taken_till"]),
-      # user_id: data["user_id"],
-      user_id: User.pluck(:id).sample,
+      user_id: current_user.id,
       car_id: data["car_id"]
     )
     
