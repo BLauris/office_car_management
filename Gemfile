@@ -19,7 +19,7 @@ gem 'devise', '~> 4.3'
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'virtus', '~> 1.0', '>= 1.0.5'
 gem 'redis', '~> 4.0', '>= 4.0.1'
-
+gem 'chronic', '~> 0.10.2'
 gem 'haml', '~> 5.0', '>= 5.0.3'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'faker', '~> 1.8', '>= 1.8.4'
