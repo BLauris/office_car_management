@@ -5,6 +5,7 @@
       %th Make
       %th Taken At
       %th Taken Till
+      %th
   %tbody
     - @reservations.each do |reservation|
       %tr 
@@ -15,3 +16,5 @@
           = reservation.taken_at
         %td
           = reservation.taken_till
+        %td
+          = link_to 'Destroy', reservation_path(reservation), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

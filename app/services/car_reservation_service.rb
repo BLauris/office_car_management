@@ -12,6 +12,12 @@ class CarReservationService
     user_car.save if errors.blank?
   end
   
+  def self.send_reservations
+    reservations = UserCar.active_reservations.includes(:user)
+    serialized_reservations = ActiveModel::SerializableResource.new(reservations, each_serializer: UserCarsSerializer).as_json
+    ActionCable.server.broadcast("car_reservations_channel", {type: 'new_reservation', data: serialized_reservations})
+  end
+  
   private
   
     def check_for_errors

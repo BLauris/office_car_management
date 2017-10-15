@@ -30,12 +30,8 @@ class Calendar extends React.Component {
     this.setState({errors: errors})
   }
   
-  newReservation(reservation){
-    const { reservations } = this.state;
-    const reserv = [...reservations];
-    
-    reserv.push(reservation);
-    this.setState({reservations: reserv, errors: []});
+  newReservation(reservations){
+    this.setState({reservations: reservations, errors: []});
   }
   
   initChannel(){

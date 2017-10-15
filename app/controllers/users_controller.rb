@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
   
   def index
-    @users = User.all
-  end
-  
-  def reservations
-    @reservations = current_user.user_cars.includes(:car)
+    @users = User.order(created_at: :desc)
   end
   
 end

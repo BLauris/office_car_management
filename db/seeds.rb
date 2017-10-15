@@ -2,7 +2,7 @@ MAKES = ['Audi', "BMW", 'Honda', 'Mazda', 'Ford', 'Citroen', 'Peogeot', 'Lexus']
 
 puts "Creating Cars"
 Car.destroy_all
-10.times do
+5.times do
   Car.create(
     make: MAKES.sample,
     color: Faker::Color.color_name,
@@ -15,7 +15,7 @@ puts " DONE "
 
 puts "Creating Users"
 User.destroy_all
-19.times do
+10.times do
   User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -26,9 +26,9 @@ User.destroy_all
 end
 
 User.create(
-  first_name: "Lauris",
-  last_name: "Bligzna",
-  email: "bligzna.lauris@gmail.com",
+  first_name: "Jon",
+  last_name: "Doe",
+  email: "user@example.com",
   password: "defaultpw",
   password_confirmation: "defaultpw"
 )
