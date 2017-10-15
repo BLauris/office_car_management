@@ -7,12 +7,21 @@ class CarReservationsChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
-  def send_reservations(data)
-    # message = current_user.messages.create(body: data['body'], chat_room_id: data['chat_room_id'])
-    # if message.errors.present?
-    #   transmit({type: 'errors', data: message.errors.full_messages})
-    # else
-    #   MessageBroadcastJob.perform_later(message.id)
-    # end
+  def reserve_car(data)
+    Chronic.time_class = Time.zone
+    
+    car_reservation_service = CarReservationService.new(
+      taken_at: Chronic.parse(data["taken_at"]),
+      taken_till: Chronic.parse(data["taken_till"]),
+      # user_id: data["user_id"],
+      user_id: User.pluck(:id).sample,
+      car_id: data["car_id"]
+    )
+    
+    if car_reservation_service.reserve!
+      ReservationBroadcastJob.new(car_reservation_service.user_car.id).perform_now
+    else
+      transmit({type: 'errors', data: car_reservation_service.errors.full_messages})
+    end
   end
 end

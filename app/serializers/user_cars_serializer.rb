@@ -6,10 +6,10 @@ class UserCarsSerializer < ActiveModel::Serializer
   end
   
   def taken_at
-    object.taken_at.strftime("%d/%m/%y")
+    object.taken_at.strftime("%d/%m/%Y - %H:%M")
   end
   
   def taken_till
-    object.taken_till.strftime("%d/%m/%y")
+    object.taken_till.strftime("%d/%m/%Y - %H:%M")
   end
 end

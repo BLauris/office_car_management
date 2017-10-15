@@ -3,8 +3,8 @@ class CarReservationService
   include Virtus.model
   attribute :user_id, Integer
   attribute :car_id, Integer
-  attribute :taken_at, Date
-  attribute :taken_till, Date
+  attribute :taken_at, DateTime
+  attribute :taken_till, DateTime
   attribute :user_car, UserCar, default: :set_user_car
   attribute :errors, Array, default: :check_for_errors
   
