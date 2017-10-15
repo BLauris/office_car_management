@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:839023f766ff60847507487106c84159@tarpon.redistogo.com:10381/
   channel_prefix: office_car_management_production
