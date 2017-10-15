@@ -6,11 +6,18 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   
   resources :cars
-  resources :users, only: [ :index ]
+  resources :users, only: [ :index ] do
+    collection do
+      get :reservations
+    end
+  end
   
   namespace :api, defaults: { format: :json } do
     resources :cars, only: [ :index ] do
       get :reservation_details
+      collection do
+        get :all_reservations
+      end
     end
   end
 end
