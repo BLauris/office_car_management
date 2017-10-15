@@ -1,6 +1,6 @@
 MAKES = ['Audi', "BMW", 'Honda', 'Mazda', 'Ford', 'Citroen', 'Peogeot', 'Lexus']
 
-puts "Re-creating Cars"
+puts "Creating Cars"
 Car.destroy_all
 10.times do
   Car.create(
@@ -13,7 +13,7 @@ Car.destroy_all
 end
 puts " DONE "
 
-puts "Re-creating Users"
+puts "Creating Users"
 User.destroy_all
 19.times do
   User.create(
@@ -32,18 +32,4 @@ User.create(
   password: "defaultpw",
   password_confirmation: "defaultpw"
 )
-puts " DONE "
-
-puts "Re-Assigning Reservations"
-  Car.all.each do |car|
-    taken_at = Date.today + rand(1..7).days
-    taken_till = taken_at + rand(1..3).days
-    
-    UserCar.create(
-      user_id: User.pluck(:id).sample,
-      car_id: car.id,
-      taken_at: taken_at,
-      taken_till: taken_till
-    )
-  end
 puts " DONE "
