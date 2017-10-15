@@ -14,7 +14,7 @@ class ReservationForm extends React.Component {
   }  
   
   reserveCar(){
-    this.props.toggleForm.bind(this)
+    this.props.toggleForm()
     
     const { takenAt, takenTill } = this.state;
     
@@ -23,8 +23,7 @@ class ReservationForm extends React.Component {
       taken_at: takenAt, 
       taken_till: takenTill, 
       car_id: this.props.carId
-    });
-    
+    });    
   }
   
   handleChange(date, key) {

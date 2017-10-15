@@ -2,7 +2,7 @@ MAKES = ['Audi', "BMW", 'Honda', 'Mazda', 'Ford', 'Citroen', 'Peogeot', 'Lexus']
 
 puts "Creating Cars"
 Car.destroy_all
-5.times do
+3.times do
   Car.create(
     make: MAKES.sample,
     color: Faker::Color.color_name,
