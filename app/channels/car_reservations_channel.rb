@@ -20,7 +20,7 @@ class CarReservationsChannel < ApplicationCable::Channel
     if car_reservation_service.reserve!
       ReservationBroadcastJob.new(car_reservation_service.user_car.id).perform_now
     else
-      transmit({type: 'errors', data: car_reservation_service.errors.full_messages})
+      transmit({type: 'errors', data: car_reservation_service.errors})
     end
   end
 end

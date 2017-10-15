@@ -2,6 +2,7 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import axios from 'axios'
 import moment from 'moment'
+import 'react-datepicker/dist/react-datepicker.css';
 
 class ReservationForm extends React.Component {
   constructor () {
@@ -13,6 +14,8 @@ class ReservationForm extends React.Component {
   }  
   
   reserveCar(){
+    this.props.toggleForm.bind(this)
+    
     const { takenAt, takenTill } = this.state;
     
     event.preventDefault();
@@ -22,7 +25,6 @@ class ReservationForm extends React.Component {
       car_id: this.props.carId
     });
     
-    this.props.toggleForm.bind(this)
   }
   
   handleChange(date, key) {
@@ -33,22 +35,41 @@ class ReservationForm extends React.Component {
     const { takenAt, takenTill } = this.state;
     
     return(
-      <form>
-        <div className="form-group">
+      <div className="col-sm-12">
+        <div className="col-sm-6">
           <label>Take At:</label>
-          <DatePicker dateFormat="DD/MM/YYYY" selected={takenAt} onChange={this.handleChange.bind(this, 'takenAt')} showTimeSelect />
-        </div>
-        <div className="form-group">
+          <DatePicker
+            dateFormat="DD/MM/YYYY"
+            selected={takenAt}
+            onChange={(e) => this.handleChange(e, 'takenAt')}
+            showTimeSelect
+            timeIntervals={15}
+            dateFormat="LLL"
+          />
+        </div>  
+        <div className="col-sm-6">
           <label>Take Till:</label>
-          <DatePicker dateFormat="DD/MM/YYYY" selected={takenTill} onChange={this.handleChange.bind(this, 'takenTill')} showTimeSelect />
+          <DatePicker
+            dateFormat="DD/MM/YYYY"
+            selected={takenTill}
+            onChange={(e) => this.handleChange(e, 'takenTill')}
+            showTimeSelect
+            timeIntervals={15}
+            dateFormat="LLL"
+          />
         </div>
-        <button className="btn btn-default pull-left" onClick={ this.props.toggleForm.bind(this) }>
-          Cancel
-        </button>
-        <button className="btn btn-primary pull-right" onClick={ this.reserveCar.bind(this) }>
-          Save
-        </button>
-      </form>
+        <br/>
+        <br/>
+        <br/>
+        <div className="col-sm-12">
+          <button className="btn btn-default pull-left" onClick={ this.props.toggleForm.bind(this) }>
+            Cancel
+          </button>
+          <button className="btn btn-primary pull-right" onClick={ this.reserveCar.bind(this) }>
+            Save
+          </button>
+        </div>
+      </div>
     )   
   }
 }

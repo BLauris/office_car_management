@@ -7,7 +7,8 @@ class Calendar extends React.Component {
   constructor () {
     super()
     this.state = { 
-      reservations: []
+      reservations: [],
+      errors: []
     }
   }
   
@@ -25,12 +26,16 @@ class Calendar extends React.Component {
     })
   }
   
+  addErrors(errors) {
+    this.setState({errors: errors})
+  }
+  
   newReservation(reservation){
     const { reservations } = this.state;
     const reserv = [...reservations];
     
     reserv.push(reservation);
-    this.setState({reservations: reserv});
+    this.setState({reservations: reserv, errors: []});
   }
   
   initChannel(){
@@ -49,8 +54,7 @@ class Calendar extends React.Component {
             this.newReservation(data);
             break;
           case 'errors':
-            console.error("error");
-            // this.addErrors(data);
+            this.addErrors(data);
             break;
           default:
             console.error({type, data});
@@ -76,27 +80,36 @@ class Calendar extends React.Component {
       </tr>
     );
   }
+  
+  errorList(){
+    const { errors } = this.state;
+    
+    return errors.map((error, index) =>
+      <li key={ index }>
+        { error }
+      </li>
+    );
+  }
 
   render () {
     return(
-      // <div>
-      //   <BigCalendar
-      //     startAccessor='startDate'
-      //     endAccessor='endDate'
-      //   />
-      // </div>
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th>Taken At</th>
-            <th>taken Till</th>
-            <th>Taken By</th>
-          </tr>
-        </thead>
-        <tbody>
-          { this.list() }
-        </tbody>
-      </table>
+      <div>
+        <ul>
+          { this.errorList() }
+        </ul>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Taken At</th>
+              <th>taken Till</th>
+              <th>Taken By</th>
+            </tr>
+          </thead>
+          <tbody>
+            { this.list() }
+          </tbody>
+        </table>
+      </div>
     )
   }
 }

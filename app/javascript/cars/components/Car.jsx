@@ -16,7 +16,6 @@ class Car extends React.Component {
     
     let path = "/api/cars/" + this.props.car.id + "/reservation_details";
     axios.get(path).then(response => {
-      console.log(response.data);
       this.setState({ userCars: response.data })
     })
     .catch(error => {
