@@ -1,0 +1,18 @@
+.col-sm-4.col-sm-offset-4
+  %h2 New Car
+  = form_for @car do |f|
+    .form-group
+      = f.label :make
+      = f.text_field :make, autofocus: true, class: "form-control"
+    .form-group
+      = f.label :color
+      = f.text_field :color, autofocus: true, class: "form-control"
+    .form-group
+      = f.label :transmission
+      = f.select :transmission, options_for_select(Car.transmissions.keys.each { |t| [t.humanize, t] }), {}, { class: "form-control" }
+    .form-group
+      = f.label :fuel
+      = f.select :fuel, options_for_select(Car.fuels.keys.each { |t| [t.humanize, t] }), {}, { class: "form-control" }
+    .form-group
+      = link_to "Cancel", root_path, class: "btn btn-default"
+      = f.submit "Save", class: "btn btn-primary pull-right"

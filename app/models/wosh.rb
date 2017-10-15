@@ -1,0 +1,2 @@
+class Wosh < ApplicationRecord
+end

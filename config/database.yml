@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  reconnect: false
+  encoding: unicode
+  database: office_car_management_dev
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  reconnect: false
+  database: office_car_management_test
+  pool: 5
+  username: postgres
+  password: postgres
+  port: 5432
+  host: localhost
