@@ -8,7 +8,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .container-fluid
-      = render partial: "shared/navigation" 
+      - if user_signed_in?
+        = render partial: "shared/navigation" 
       .col-sm-12
         = render partial: "shared/flash_messages"
         
